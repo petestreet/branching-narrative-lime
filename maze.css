@@ -10,7 +10,7 @@ html, body {
 }
 
 #maze {
-    margin: -160px auto 0 auto;
+    margin: -180px auto 0 auto;
     border: 1px solid #000;
     width: 600px;
     height: 400px;
@@ -23,15 +23,27 @@ p {
 #myDialog {
     visibility: hidden;
     position: absolute;
-    left: 0px;
-    top: 0px;
     font-size: 150%;
     width: 60%;
-    margin-left: 20%;
-    margin-top: 3em;
+    margin-left: 15%;
     text-align:center;
     z-index: 1000;
     border: 1px solid #111111;
-    padding: 1.5em;
+    padding: 5%;
     background-color: #ffffff;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.tinted-body {
+    background-color: #bbbbbb;
+}
+.tinted:after {
+    content: '';
+    position: absolute;
+    width: inherit;
+    height: inherit;
+    top: 0;
+    left: 0;
+    background: rgba(187, 187, 187, 0.5);
 }
