@@ -7,36 +7,42 @@
         <script src="maze_compiled.js"></script>
     </head>
     <body>
-        <div id="maze"></div>
-        <p>Use keyboard arrows, or click/touch at the very end of the path you want to go, to move through the maze.</p>
-        <p>Press the spacebar to view the story.</p>
-        <br>
-        <p>View the source code (including the story text) on <a href='https://github.com/petestreet/branching-narrative-lime'>Github</a></p>
+        <div id="container">
+            <div id="maze"></div>
+            <p>Use keyboard arrows, or click/touch at the very end of the path you want to go, to move through the maze.</p>
+            <p>Press the spacebar to view the story.</p>
+            <br>
+            <p>View the source code (including the story text) on <a href='https://github.com/petestreet/branching-narrative-lime'>Github</a></p>
+        </div>
         <div id="myDialog">[Redacted]: Trial 1</div>
-        
+
         <script>maze.start()</script>
         <script>
-        var isShown = 0;
-        document.body.onkeyup = function(e){
-            if(e.keyCode == 32){
-                el = document.getElementById("myDialog");
-                el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
-                if (el.style.visibility == "visible") {
-                    document.body.classList.add('tinted-body');
-                    var lime_scene = document.getElementsByClassName('lime-scene')[0];
-                    for (var i = 0; i < lime_scene.children.length; i++) {
-                        lime_scene.children[i].classList.add('tinted');
+            document.getElementById('container').style.height = window.outerHeight + "px";
+            document.body.onkeydown = function(e) {
+                e.preventDefault();
+                return false;
+            };
+            document.body.onkeyup = function(e){
+                if(e.keyCode == 32){
+                    el = document.getElementById("myDialog");
+                    el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+                    if (el.style.visibility == "visible") {
+                        document.getElementById('container').classList.add('tinted-body');
+                        var lime_scene = document.getElementsByClassName('lime-scene')[0];
+                        for (var i = 0; i < lime_scene.children.length; i++) {
+                            lime_scene.children[i].classList.add('tinted');
+                        }
+                    }
+                    else {
+                        document.getElementById('container').classList.remove('tinted-body');
+                        var lime_scene = document.getElementsByClassName('lime-scene')[0];
+                        for (var i = 0; i < lime_scene.children.length; i++) {
+                            lime_scene.children[i].classList.remove('tinted');
+                        }
                     }
                 }
-                else {
-                    document.body.classList.remove('tinted-body');
-                    var lime_scene = document.getElementsByClassName('lime-scene')[0];
-                    for (var i = 0; i < lime_scene.children.length; i++) {
-                        lime_scene.children[i].classList.remove('tinted');
-                    }
-                }
-            }
-        }
+            };
         </script>
     </body>
 </html>
