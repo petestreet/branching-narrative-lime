@@ -10,21 +10,18 @@
         <div id="maze"></div>
         <p>Use keyboard arrows, or click/touch at the very end of the path you want to go, to move through the maze.</p>
         <p>Press the spacebar to view the story.</p>
-        <dialog id="myDialog">[Redacted]: Trial 1</dialog>
+        <br><br>
+        <p>View the source code (including the story text) on <a href='https://github.com/petestreet/branching-narrative-lime'>Github</a></p>
+        <div id="myDialog">[Redacted]: Trial 1</div>
         
         <script>maze.start()</script>
         <script>
         var isShown = 0;
         document.body.onkeyup = function(e){
             if(e.keyCode == 32){
-                if (isShown) {
-                    document.getElementById("myDialog").close(); 
-                    isShown = 0;
-                }
-                else {
-                    document.getElementById("myDialog").showModal(); 
-                    isShown = 1;
-                }
+                el = document.getElementById("myDialog");
+                el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+                document.body.style.backgroundColor = (el.style.visibility == "visible") ? "#bbbbbb" : "#ffffff";
             }
         }
         </script>

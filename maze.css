@@ -21,7 +21,28 @@ p {
 }
 
 #myDialog {
+    visibility: hidden;
+    position: absolute;
+    left: 0px;
+    top: 0px;
     font-size: 150%;
-    width: 70%;
-    margin-left: 15%;
+    width: 60%;
+    margin-left: 20%;
+    margin-top: 3em;
+    text-align:center;
+    z-index: 1000;
+    border: 1px solid #111111;
+    padding: 1.5em;
+    background-color: #ffffff;
+}
+
+.tinted-image {
+  background: 
+    /* top, transparent red, faked with gradient */ 
+    linear-gradient(
+      rgba(255, 0, 0, 0.45), 
+      rgba(255, 0, 0, 0.45)
+    ),
+    /* bottom, image */
+    url(image.jpg);
 }
