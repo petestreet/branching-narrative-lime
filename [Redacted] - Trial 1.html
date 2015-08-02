@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>[Redacted]: Trial 1</title>
+        <meta charset="UTF-8" />
+        <link rel="stylesheet" href="maze.css" type="text/css" />
+        <script src="maze_compiled.js"></script>
+    </head>
+    <body>
+        <div id="maze"></div>
+        <p>Use keyboard arrows, or click/touch at the very end of the path you want to go, to move through the maze.</p>
+        <p>Press the spacebar to view the story.</p>
+        <dialog id="myDialog">[Redacted]: Trial 1</dialog>
+        
+        <script>maze.start()</script>
+        <script>
+        var isShown = 0;
+        document.body.onkeyup = function(e){
+            if(e.keyCode == 32){
+                if (isShown) {
+                    document.getElementById("myDialog").close(); 
+                    isShown = 0;
+                }
+                else {
+                    document.getElementById("myDialog").showModal(); 
+                    isShown = 1;
+                }
+            }
+        }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,27 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#maze, p {
+    position: relative;
+    top: 50%;
+}
+
+#maze {
+    margin: -160px auto 0 auto;
+    border: 1px solid #000;
+    width: 600px;
+    height: 400px;
+}
+
+p {
+    text-align: center;
+}
+
+#myDialog {
+    font-size: 150%;
+    width: 70%;
+    margin-left: 15%;
+}
