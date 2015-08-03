@@ -16,7 +16,7 @@
         </div>
         <div id="myDialog">[Redacted]: Trial 1</div>
 
-        <script>maze.start()</script>
+        <script>window.onload = function loaded() { maze.start() }</script>
         <script>
             document.getElementById('container').style.height = window.outerHeight + "px";
             document.body.onkeydown = function(e) {
