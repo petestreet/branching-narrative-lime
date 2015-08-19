@@ -63,4 +63,8 @@ p {
     .desktop-only {
         display: none;
     }
+    #myDialog {
+        margin-top: 2em;
+        overflow-y: scroll;
+    }
 }
