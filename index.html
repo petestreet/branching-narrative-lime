@@ -5,44 +5,62 @@
         <meta charset="UTF-8" />
         <link rel="stylesheet" href="maze.css" type="text/css" />
         <script src="maze_compiled.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </head>
     <body>
         <div id="container">
             <div id="maze"></div>
-            <p>Use keyboard arrows, or click/touch at the very end of the path you want to go, to move through the maze.</p>
-            <p>Press the spacebar to view the story.</p>
+            <p><span class="desktop-only">Use keyboard arrows, or click</span><span class="mobile-only">Touch</span> at the very end of the path you want to go to move through the maze.</p>
+            <p class="desktop-only">Press the spacebar to view the story.</p>
+            <p class="mobile-only">Tap the screen to view the story.</p>
             <br>
-            <p>View the source code (including the story text) on <a href='https://github.com/petestreet/branching-narrative-lime'>Github</a></p>
+            <p>View the source code (including the story text) on <a href='https://github.com/petestreet/branching-narrative-lime' target='_blank'>Github</a></p>
         </div>
         <div id="myDialog">[Redacted]: Trial 1</div>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script>window.onload = function loaded() { maze.start() }</script>
         <script>
             document.getElementById('container').style.height = window.outerHeight + "px";
-            document.body.onkeydown = function(e) {
-                e.preventDefault();
+
+            function keyDown(f) {
+                f.preventDefault();
                 return false;
+            }
+            function keyUp() {
+                el = document.getElementById("myDialog");
+                el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
+                if (el.style.visibility == "visible") {
+                    document.getElementById('container').classList.add('tinted-body');
+                    var lime_scene = document.getElementsByClassName('lime-scene')[0];
+                    for (var i = 0; i < lime_scene.children.length; i++) {
+                        lime_scene.children[i].classList.add('tinted');
+                    }
+                }
+                else {
+                    document.getElementById('container').classList.remove('tinted-body');
+                    var lime_scene = document.getElementsByClassName('lime-scene')[0];
+                    for (var i = 0; i < lime_scene.children.length; i++) {
+                        lime_scene.children[i].classList.remove('tinted');
+                    }
+                }
+            }
+
+            document.body.onkeydown = function(e) {
+                keyDown(e);
             };
             document.body.onkeyup = function(e){
                 if(e.keyCode == 32){
-                    el = document.getElementById("myDialog");
-                    el.style.visibility = (el.style.visibility == "visible") ? "hidden" : "visible";
-                    if (el.style.visibility == "visible") {
-                        document.getElementById('container').classList.add('tinted-body');
-                        var lime_scene = document.getElementsByClassName('lime-scene')[0];
-                        for (var i = 0; i < lime_scene.children.length; i++) {
-                            lime_scene.children[i].classList.add('tinted');
-                        }
-                    }
-                    else {
-                        document.getElementById('container').classList.remove('tinted-body');
-                        var lime_scene = document.getElementsByClassName('lime-scene')[0];
-                        for (var i = 0; i < lime_scene.children.length; i++) {
-                            lime_scene.children[i].classList.remove('tinted');
-                        }
-                    }
+                    keyUp();
                 }
             };
+
+            document.body.onclick = function(e){
+                if (!$(event.target).closest('#maze').length && !$(event.target).closest('a').length) {
+                    keyUp();
+                }
+            };
+
         </script>
     </body>
 </html>
