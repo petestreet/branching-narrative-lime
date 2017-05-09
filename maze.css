@@ -37,7 +37,7 @@ p {
     text-align:center;
     z-index: 1000;
     border: 1px solid #111111;
-    padding: 5%;
+    padding: 1rem;
     background-color: #ffffff;
     top: 50%;
     transform: translateY(-50%);
